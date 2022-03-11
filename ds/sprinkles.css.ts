@@ -1,0 +1,112 @@
+import { vars } from "./vars.css";
+import { defineProperties, createSprinkles } from "@vanilla-extract/sprinkles";
+
+export const conditions = {
+  base: {},
+  "sm-n-above": { "@media": "screen and (min-width: 600px)" },
+  "md-n-above": { "@media": "screen and (min-width: 768px)" },
+  "lg-n-above": { "@media": "screen and (min-width: 992px)" },
+  "xl-n-above": { "@media": "screen and (min-width: 1280px)" },
+  "sm-n-below": { "@media": "screen and (max-width: 600px)" },
+  "md-n-below": { "@media": "screen and (max-width: 768px)" },
+  "lg-n-below": { "@media": "screen and (max-width: 992px)" },
+  "xl-n-below": { "@media": "screen and (max-width: 1280px)" },
+  "sm-only": { "@media": "screen and (min-width: 0px) and (max-width: 600px)" },
+  "md-only": {
+    "@media": "screen and (min-width: 600px) and (max-width: 768px)",
+  },
+  "lg-only": {
+    "@media": "screen and (min-width: 768px) and (max-width: 992px)",
+  },
+  "xl-only": {
+    "@media": "screen and (min-width: 992px) and (max-width: 1280px)",
+  },
+};
+
+export const colorProperties = defineProperties({
+  properties: {
+    color: vars.colors,
+    backgroundColor: vars.colors,
+    borderColor: vars.colors,
+    aspectRatio: vars.aspectRatio,
+    objectFit: ["fill", "contain", "cover", "none", "scale-down"],
+    fontFamily: vars.fontFamily,
+    userSelect: ["none", "auto"],
+    touchAction: ["auto", "pan-x", "pan-y", "pan-x pan-y"],
+    transition: ["opacity"],
+    opacity: vars.opacity,
+    cursor: ["auto", "default", "pointer", "not-allowed"],
+  },
+});
+
+export const responsieProperties = defineProperties({
+  conditions: conditions,
+  defaultCondition: "base",
+  properties: {
+    position: ["absolute", "relative"],
+    display: ["flex", "block", "inline-block", "inline", "inline-flex", "none"],
+    flexDirection: ["row", "column"],
+    justifyContent: [
+      "stretch",
+      "flex-start",
+      "center",
+      "flex-end",
+      "space-around",
+      "space-between",
+    ],
+    alignItems: ["stretch", "flex-start", "center", "flex-end"],
+    alignContent: [
+      "stretch",
+      "flex-start",
+      "center",
+      "flex-end",
+      "space-around",
+      "space-between",
+    ],
+    overflow: ["auto", "hidden", "scroll"],
+    borderWidth: vars.borderWidth,
+    borderRadius: vars.radius,
+    marginLeft: vars.spacing,
+    marginRight: vars.spacing,
+    marginTop: vars.spacing,
+    marginBottom: vars.spacing,
+    paddingLeft: vars.spacing,
+    paddingRight: vars.spacing,
+    paddingTop: vars.spacing,
+    paddingBottom: vars.spacing,
+    top: { ...vars.fractions, ...vars.spacing },
+    left: { ...vars.fractions, ...vars.spacing },
+    right: { ...vars.fractions, ...vars.spacing },
+    bottom: { ...vars.fractions, ...vars.spacing },
+    width: vars.width,
+    maxWidth: vars.height,
+    minWidth: vars.height,
+    height: vars.height,
+    maxHeight: vars.height,
+    minHeight: vars.height,
+    fontSize: vars.fontSize,
+    fontWeight: vars.fontWeight,
+    lineHeight: vars.lineHeight,
+    zIndex: vars.order,
+    gap: vars.spacing,
+  },
+  shorthands: {
+    padding: ["paddingBottom", "paddingLeft", "paddingTop", "paddingRight"],
+    margin: ["marginBottom", "marginLeft", "marginTop", "marginRight"],
+    mx: ["marginLeft", "marginRight"],
+    my: ["marginTop", "marginBottom"],
+    mt: ["marginTop"],
+    mb: ["marginBottom"],
+    ml: ["marginLeft"],
+    mr: ["marginRight"],
+    px: ["paddingLeft", "paddingRight"],
+    py: ["paddingTop", "paddingBottom"],
+    pt: ["paddingTop"],
+    pb: ["paddingBottom"],
+    pl: ["paddingLeft"],
+    pr: ["paddingRight"],
+    inset: ["top", "left", "right", "bottom"],
+  },
+});
+
+export const sprinkles = createSprinkles(responsieProperties, colorProperties);
